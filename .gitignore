@@ -6,7 +6,11 @@ dist/
 wheels/
 *.egg-info
 
-data/archive
 
 # Virtual environments
 .venv
+
+# Custom
+data/archive
+.env
+.DS_Store
