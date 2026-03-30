@@ -1,4 +1,4 @@
-# AIMO3 Using RAG
+# RAG Agent System for AIMO3
 
 ## Description
 
