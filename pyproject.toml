@@ -4,4 +4,11 @@ version = "0.1.0"
 description = "AI Mathematical Olympiad Kaggle Competition"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "dotenv>=0.9.9",
+    "kaggle>=2.0.0",
+    "numpy>=2.4.4",
+    "openai>=2.30.0",
+    "pandas>=3.0.1",
+    "polars>=1.39.3",
+]
