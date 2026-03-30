@@ -8,9 +8,7 @@ import pandas as pd
 from chromadb.api.types import Metadata
 from openai import OpenAI
 
-sys.path.append(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-)
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.collection import get_collection
 from src.utils.bm25_utils import save_bm25_index
 
