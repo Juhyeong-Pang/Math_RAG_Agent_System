@@ -8,7 +8,6 @@ Guidelines:
 4. If and only if the answer is in fraction, turn it into a decimal. Round all kind of float values to the tenth decimal place.
 5. If the answer is an algebraic equation, leave no space in between the notation.
 6. Leave the answer as it is if it is an integer, and do not include and comma in your response.
-7. 
 7. You MUST respond in valid JSON format with a single key "answer".
 
 Your output must be in the format of JSON:
