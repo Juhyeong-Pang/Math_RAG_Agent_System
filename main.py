@@ -22,8 +22,14 @@ async def inference(file: UploadFile) -> EvalResult:
     return result
 
 
+@app.post("/inference-baseline")
+async def baseline_inference(file: UploadFile) -> EvalResult:
+    result = await run_full_evaluation(file, agent)
+    return result
+
+
 @app.post("/single-inference")
 async def single_inference(request: str) -> str:
-    predicted_answer = await agent.solve(request.query)
+    predicted_answer = await agent.solve(request)
 
     return predicted_answer

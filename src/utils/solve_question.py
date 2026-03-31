@@ -30,7 +30,7 @@ async def solve_single_question(
     async with semaphore:
         try:
             question = row["problem"]
-            result = await agent.solve(question)
+            result = await asyncio.wait_for(agent.solve(question), timeout=90.0)
             answer = str(result)
             actual_answer = row["answer"]
             is_correct = answer == actual_answer
@@ -38,13 +38,15 @@ async def solve_single_question(
                 "problem": question,
                 "answer": answer,
                 "actual_answer": actual_answer,
+                "level": row["level"],
+                "type": row["type"],
                 "is_correct": is_correct,
             }
 
             return is_correct, query_dict
         except Exception as e:
             print(f"Error: {e}")
-            return None
+            return False, {"problem": row.get("problem", ""), "error": str(e)}
 
 
 async def run_full_evaluation(file: UploadFile, agent: RAGAgent) -> EvalResult:
@@ -52,7 +54,7 @@ async def run_full_evaluation(file: UploadFile, agent: RAGAgent) -> EvalResult:
     print(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] Start Evaluating...")
 
     try:
-        df = pd.read_csv(file.file).head(500)
+        df = pd.read_csv(file.file).head(50)
         if "problem" not in df.columns or "answer" not in df.columns:
             raise HTTPException(
                 status_code=400,
@@ -94,7 +96,9 @@ async def solve_baseline_single_question(
     async with semaphore:
         try:
             question = row["problem"]
-            result = await agent.solve_baseline(question)
+            result = await asyncio.wait_for(
+                agent.solve_baseline(question), timeout=90.0
+            )
             answer = str(result)
             actual_answer = row["answer"]
             is_correct = answer == actual_answer
@@ -102,13 +106,15 @@ async def solve_baseline_single_question(
                 "problem": question,
                 "answer": answer,
                 "actual_answer": actual_answer,
+                "level": row["level"],
+                "type": row["type"],
                 "is_correct": is_correct,
             }
 
             return is_correct, query_dict
         except Exception as e:
             print(f"Error: {e}")
-            return None
+            return False, {"problem": row.get("problem", ""), "error": str(e)}
 
 
 async def run_baseline_evaluation(file: UploadFile, agent: RAGAgent) -> EvalResult:
@@ -116,7 +122,7 @@ async def run_baseline_evaluation(file: UploadFile, agent: RAGAgent) -> EvalResu
     print(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] Start Evaluating...")
 
     try:
-        df = pd.read_csv(file.file).head(500)
+        df = pd.read_csv(file.file).head(50)
         if "problem" not in df.columns or "answer" not in df.columns:
             raise HTTPException(
                 status_code=400,

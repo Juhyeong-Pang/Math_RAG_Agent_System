@@ -1,6 +1,7 @@
 import asyncio
 import json
 import os
+import re
 import sys
 from typing import Any  # , Literal, cast
 
@@ -71,8 +72,26 @@ class RAGAgent:
         if raw_content is None:
             raise ValueError("LLM Response is empty")
 
-        content: dict[str, Any] = json.loads(raw_content)
-        return content
+        result = self._safe_json_load(raw_content)
+        return re.sub(r"[\\]", "", result)
+
+    def _safe_json_load(self, raw_content: str) -> dict:
+        try:
+            return json.loads(raw_content)
+        except json.JSONDecodeError:
+            try:
+                fixed_content = raw_content.replace("\\", "\\\\")
+                fixed_content = fixed_content.replace("\\\\\\\\", "\\\\")
+                return json.loads(fixed_content)
+            except Exception:
+                match = re.search(r"\{.*\}", raw_content, re.DOTALL)
+                if match:
+                    try:
+                        return json.loads(match.group())
+                    except Exception:
+                        pass
+
+        return {"answer": "0", "error": "json_parse_failed"}
 
     async def _retrieve_and_filter(self, query: str) -> str:
         """Method to retrieve similar questions based on the distance"""
