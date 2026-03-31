@@ -95,7 +95,7 @@ We tested the model with **500** different questions from **7 different categori
 
 By implementing RAG AI System, we improved the model's performance by \_%.
 
-Even though our LLM model (gpt-o4-mini) is known to be bad at answering math questions, the overall accuracy of our RAG AI System is still lower than expected.\
+Even though our LLM model (gpt-o4-mini) is known to be bad at answering math questions, the overall accuracy of our RAG AI System is still lower than expected.
 
 There were some questions that the model answered correctly but was marked wrong because some of the syntax of answers (both from the system and test_with_answer.csv) were broken.
 
