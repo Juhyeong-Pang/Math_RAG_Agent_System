@@ -20,7 +20,7 @@ def generate_id_from_text(text: str) -> str:
 
 
 async def run_ingestion():
-    df = pd.read_csv(os.path.join("data", "math_dataset.csv"))
+    df = pd.read_csv(os.path.join("data", "train.csv"))
 
     collection = get_collection()
 
@@ -60,7 +60,7 @@ async def run_ingestion():
             logging.error(f"Failed to index batch at {i}: {e}")
     print(f"Successfully indexed {len(documents)} items.")
 
-    bm25_path = os.path.join("data", "bm25_index.pkl")
+    bm25_path = os.path.join("bm25_index.pkl")
     save_bm25_index(documents, bm25_path)
 
 
