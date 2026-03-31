@@ -6,7 +6,11 @@ from fastapi import FastAPI, UploadFile
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.agent import RAGAgent
-from src.utils.solve_question import EvalResult, run_full_evaluation
+from src.utils.solve_question import (
+    EvalResult,
+    run_baseline_evaluation,
+    run_full_evaluation,
+)
 
 app = FastAPI()
 
@@ -24,7 +28,7 @@ async def inference(file: UploadFile) -> EvalResult:
 
 @app.post("/inference-baseline")
 async def baseline_inference(file: UploadFile) -> EvalResult:
-    result = await run_full_evaluation(file, agent)
+    result = await run_baseline_evaluation(file, agent)
     return result
 
 
