@@ -64,7 +64,7 @@ Try the `/inference` endpoint by putting in the `test_with_answer.csv` file. You
 
 ### 1. RRF (Reciprocal Rank Fusion) Reranking
 
-- Reduces bias from any single retrieval method, ensuring the LLM receives the 5 most trustworthy reference problems to refer to.
+- **Reranking**: Reduces bias from any single retrieval method, ensuring the LLM receives the 5 most trustworthy reference problems to refer to.
 
 ### 2. Hybrid Retrieval (Vector + Keyword Search)
 
@@ -86,7 +86,7 @@ Try the `/inference` endpoint by putting in the `test_with_answer.csv` file. You
 
 ### Description
 
-We tested the model with 500 different questions from 7 different categories and 5 different levels (difficulties).
+We tested the model with **500** different questions from **7 different categories** _(pre-algebra, algebra, intermediate algebra, counting/probability, geometry, number_theory, precalculus)_ and **5 different levels** _(difficulties)_.
 
 |     Model     | Overall Accuracy |
 | :-----------: | :--------------: |
@@ -106,3 +106,5 @@ There were some questions that the model answered correctly but was marked wrong
 ## Future Improvement
 
 - **Format Output**: The answer generate by the model is not uniform. Sometimes, integers come with an extra decimal (ex. 80.0 instead of 80).
+
+- **Self-Correction Agent**: I am not sure if it is going to be effective, but I think adding a self-correcting agent that checks the answer to the question and re-running the inference according to the result might help increase accuracy.
