@@ -26,11 +26,11 @@ class RAGAgent:
             os.path.join("search_db", "bm25_index.pkl")
         )
 
-    async def solve(self, query: str) -> str:
+    async def solve(self, query: str, category: str | None) -> str:
         """The whole pipeline of RAG"""
 
         try:
-            context = await self._retrieve_and_filter(query)
+            context = await self._retrieve_and_filter(query, category)
             result_json = await self._generate_final_response(query, context)
 
             return result_json.get("answer", "0")
@@ -93,11 +93,12 @@ class RAGAgent:
 
         return {"answer": "0", "error": "json_parse_failed"}
 
-    async def _retrieve_and_filter(self, query: str) -> str:
+    async def _retrieve_and_filter(self, query: str, category: str = None) -> str:
         """Method to retrieve similar questions based on the distance"""
+
+        where_filter = {"Category": category} if category else None
         results = self.collection.query(
-            query_texts=[query],
-            n_results=5,
+            query_texts=[query], n_results=5, where=where_filter
         )
 
         documents_list = results.get("documents", [[]])

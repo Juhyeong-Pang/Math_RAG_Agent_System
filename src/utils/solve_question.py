@@ -32,7 +32,10 @@ async def solve_single_question(
     async with semaphore:
         try:
             question = row["problem"]
-            result = await asyncio.wait_for(agent.solve(question), timeout=90.0)
+            category = row["type"]
+            result = await asyncio.wait_for(
+                agent.solve(question, category), timeout=90.0
+            )
             answer = str(result)
             actual_answer = row["answer"]
             is_correct = answer == actual_answer
