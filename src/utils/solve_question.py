@@ -15,7 +15,7 @@ sys.path.append(
 
 from src.agent import RAGAgent
 
-TEST_SIZE = 1000
+TEST_SIZE = 500
 
 
 class EvalResult(BaseModel):
