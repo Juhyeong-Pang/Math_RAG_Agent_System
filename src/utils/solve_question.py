@@ -15,6 +15,8 @@ sys.path.append(
 
 from src.agent import RAGAgent
 
+TEST_SIZE = 500
+
 
 class EvalResult(BaseModel):
     accuracy: float
@@ -54,7 +56,7 @@ async def run_full_evaluation(file: UploadFile, agent: RAGAgent) -> EvalResult:
     print(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] Start Evaluating...")
 
     try:
-        df = pd.read_csv(file.file).head(50)
+        df = pd.read_csv(file.file).head(TEST_SIZE)
         if "problem" not in df.columns or "answer" not in df.columns:
             raise HTTPException(
                 status_code=400,
@@ -122,7 +124,7 @@ async def run_baseline_evaluation(file: UploadFile, agent: RAGAgent) -> EvalResu
     print(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] Start Evaluating...")
 
     try:
-        df = pd.read_csv(file.file).head(50)
+        df = pd.read_csv(file.file).head(TEST_SIZE)
         if "problem" not in df.columns or "answer" not in df.columns:
             raise HTTPException(
                 status_code=400,
