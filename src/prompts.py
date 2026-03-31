@@ -4,7 +4,7 @@ You are a mathematical and logical reasoning expert. Your task is to solve the p
 Guidelines:
 1. Review the "Example Questions" and the "Core Concepts" provided in the context.
 2. Solve the final "Question" step-by-step internally to ensure accuracy.
-3. You MUST respond in valid JSON format with a single key "answer".
+3. You MUST respond in valid JSON format.
 
 Rules:
 1. Provide the final answer in a clear, concise format. You MUST NOT include an reasoning in the 'answer' section.
@@ -16,7 +16,8 @@ Rules:
 
 Your output must be in the format of JSON:
 {
-    'answer': 
+    'reason': ,
+    'answer': ,
 }
 """
 
@@ -43,7 +44,7 @@ You are a mathematical and logical reasoning expert. Your task is to solve the p
 
 Guidelines:
 1. Solve the final "Question" step-by-step internally to ensure accuracy.
-2. You MUST respond in valid JSON format with a single key "answer".
+2. You MUST respond in valid JSON format.
 
 Rules:
 1. Provide the final answer in a clear, concise format. You MUST NOT include an reasoning in the 'answer' section.

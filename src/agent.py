@@ -38,7 +38,7 @@ class RAGAgent:
             )
         except Exception as e:
             print(f"Error When Retreiving Answer: {e}")
-            return "0"
+            return "0", f"Error: {str(e)}"
 
     async def _generate_final_response(self, query_extracted: str, context: str) -> str:
         """Method to create prompt and retrieve answer from the model"""
