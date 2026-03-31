@@ -76,11 +76,13 @@ Try the `/inference` endpoint by putting in the `test_with_answer.csv` file. You
 
 - **Context Explanation**: Instead of simply retrieving and augmenting the context, it generates simple summary of the key concepts used in the retrieved context.
 
+- **Chain of Thought**: LLM Model goes through explaining its thought process before generating its answer.
+
 ### 4. Performance Optimization
 
 - **Asynchronous Processing**: Turned each steps to be asynchronous so that it can generate inference in parrallel, significantly reducing time.
 
-- **Rate Limit Management**: Used `asyncio.Semaphore` to prevent OpenAI API to reach its TPM.
+- **Rate Limit Management**: Used `asyncio.Semaphore` to prevent OpenAI API from reaching its TPM.
 
 ## Performance Evaluation
 
@@ -93,7 +95,7 @@ We tested the model with **500** different questions from **7 different categori
 | **Baseline**  |                  |
 | **RAG Agent** |                  |
 
-By implementing RAG AI System, we improved the model's performance by \_%.
+By implementing RAG AI System, we improved the model's performance by **\_%**.
 
 Even though our LLM model (gpt-o4-mini) is known to be bad at answering complicated math questions compared to other larger models (ex. gpt-o5), the overall accuracy of our RAG AI System is still lower than expected.
 
