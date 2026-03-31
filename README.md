@@ -8,7 +8,12 @@
 
 **Tech Stack**:
 
-- **File Structure**:
+- **Language**: Python 3.12+
+- **Environment**: uv, Docker
+- **AI/Embedding**: GPT-o4-mini, text-embedding-3-small
+- **VectorDB**: chromadb
+
+**File Structure**:
 
 ```plain text
 RAG_Math
