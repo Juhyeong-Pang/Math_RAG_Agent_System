@@ -33,7 +33,9 @@ class RAGAgent:
             context = await self._retrieve_and_filter(query, category)
             result_json = await self._generate_final_response(query, context)
 
-            return result_json.get("answer", "0")
+            return result_json.get("answer", "0"), result_json.get(
+                "reason", "Not provided"
+            )
         except Exception as e:
             print(f"Error When Retreiving Answer: {e}")
             return "0"
@@ -221,7 +223,10 @@ class RAGAgent:
 
             content: dict[str, Any] = json.loads(raw_content)
 
-            return content.get("answer", "0")
+            return (
+                content.get("answer", "0"),
+                content.get("reason", "Not provided"),
+            )
         except Exception as e:
             print(f"Error When Retreiving Answer: {e}")
             return "0"

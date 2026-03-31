@@ -33,7 +33,7 @@ async def solve_single_question(
         try:
             question = row["problem"]
             category = row["type"]
-            result = await asyncio.wait_for(
+            result, reason = await asyncio.wait_for(
                 agent.solve(question, category), timeout=90.0
             )
             answer = str(result)
@@ -46,6 +46,7 @@ async def solve_single_question(
                 "level": row["level"],
                 "type": row["type"],
                 "is_correct": is_correct,
+                "reason": reason,
             }
 
             return is_correct, query_dict
@@ -101,7 +102,7 @@ async def solve_baseline_single_question(
     async with semaphore:
         try:
             question = row["problem"]
-            result = await asyncio.wait_for(
+            result, reason = await asyncio.wait_for(
                 agent.solve_baseline(question), timeout=90.0
             )
             answer = str(result)
@@ -114,6 +115,7 @@ async def solve_baseline_single_question(
                 "level": row["level"],
                 "type": row["type"],
                 "is_correct": is_correct,
+                "reason": reason,
             }
 
             return is_correct, query_dict

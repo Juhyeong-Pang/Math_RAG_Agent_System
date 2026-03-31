@@ -55,6 +55,7 @@ Rules:
 
 Your output must be in the format of JSON:
 {
-    'answer': 
+    'answer': ,
+    'reason':
 }
 """
