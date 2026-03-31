@@ -14,7 +14,7 @@ from src.prompts import (
     EXPLANATION_SYSTEM_MSG,
     FINAL_ANSWER_SYSTEM_MSG,
 )
-from src.utils.bm25_utils import BM25Data, load_bm25_index, tokenize_latex
+from src.utils.bm25_utils import BM25Data, load_bm25_index
 
 
 class RAGAgent:
@@ -115,13 +115,13 @@ class RAGAgent:
             v_ids = ids_list[0]
             # v_dists = distance_list[0]
 
-        b_docs: list[Any] = []
-        if self.bm25_data:
-            bm25 = self.bm25_data["bm25"]
-            all_docs = self.bm25_data["documents"]
-            tokenized_query = tokenize_latex(query)
+        # b_docs: list[Any] = []
+        # if self.bm25_data:
+        #     bm25 = self.bm25_data["bm25"]
+        #     all_docs = self.bm25_data["documents"]
+        #     tokenized_query = tokenize_latex(query)
 
-            b_docs = bm25.get_top_n(tokenized_query, all_docs, n=10)  # type: ignore
+        #     b_docs = bm25.get_top_n(tokenized_query, all_docs, n=10)  # type: ignore
 
         k = 60
         scores: dict[str, float] = {}
@@ -131,12 +131,12 @@ class RAGAgent:
             scores[doc_id] = scores.get(doc_id, 0) + 1 / (rank + k)
             doc_map[doc_id] = doc
 
-        for rank, doc in enumerate(b_docs):
-            doc_id = f"content_{hash(doc)}"
-            scores[doc_id] = scores.get(doc_id, 0) + 1 / (rank + k)
-            doc_map[doc_id] = doc
+        # for rank, doc in enumerate(b_docs):
+        #     doc_id = f"content_{hash(doc)}"
+        #     scores[doc_id] = scores.get(doc_id, 0) + 1 / (rank + k)
+        #     doc_map[doc_id] = doc
 
-        reranked_ids = sorted(scores.keys(), key=lambda x: scores[x], reverse=True)[:5]
+        reranked_ids = sorted(scores.keys(), key=lambda x: scores[x], reverse=True)[:3]
 
         context_parts: list[str] = []
         for i, doc_id in enumerate(reranked_ids):

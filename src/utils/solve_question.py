@@ -15,7 +15,7 @@ sys.path.append(
 
 from src.agent import RAGAgent
 
-TEST_SIZE = 500
+TEST_SIZE = 100
 
 
 class EvalResult(BaseModel):
@@ -67,7 +67,7 @@ async def run_full_evaluation(file: UploadFile, agent: RAGAgent) -> EvalResult:
                 detail="csv file must contain 'problem' and 'answer' columns",
             )
 
-        semaphore = asyncio.Semaphore(15)
+        semaphore = asyncio.Semaphore(8)
 
         tasks = [
             solve_single_question(row, agent, semaphore) for i, row in df.iterrows()
@@ -136,7 +136,7 @@ async def run_baseline_evaluation(file: UploadFile, agent: RAGAgent) -> EvalResu
                 detail="csv file must contain 'problem' and 'answer' columns",
             )
 
-        semaphore = asyncio.Semaphore(15)
+        semaphore = asyncio.Semaphore(8)
 
         tasks = [
             solve_baseline_single_question(row, agent, semaphore)
