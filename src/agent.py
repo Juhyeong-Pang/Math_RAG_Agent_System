@@ -48,7 +48,7 @@ class RAGAgent:
             "Answer:"
         )
 
-        print(prompt)
+        # print(prompt)
 
         async with self.semaphore:
             response: Any = await self.client.chat.completions.create(
@@ -205,6 +205,9 @@ class RAGAgent:
         except Exception as e:
             print(f"Error When Retreiving Answer: {e}")
             return "0"
+
+    def get_semaphore(self):
+        return self.semaphore
 
 
 if __name__ == "__main__":
