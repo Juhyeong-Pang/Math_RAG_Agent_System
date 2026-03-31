@@ -25,6 +25,14 @@ class RAGAgent:
     async def solve(self, query: str) -> str:
         """The whole pipeline of RAG"""
 
+        try:
+            context = await self._retrieve_and_filter(query)
+            result_json = await self._generate_final_response(query, context)
+
+            return float(result_json.get("answer", "0"))
+        except:
+            pass
+
         # return answer
 
     async def _generate_final_response(self, query_extracted: str, context: str) -> str:
