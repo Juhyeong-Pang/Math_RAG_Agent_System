@@ -63,7 +63,7 @@ Try the `/inference` endpoint by putting in the `test_with_answer.csv` file. You
 
 ### 2. Hybrid Retrieval (Vector + Keyword Search)
 
-- **Vector Search**: Retreives questions based on similarity of the entire question.
+- **Vector Search**: Retreives questions in the same category based on similarity of the entire question.
 
 - **Keyword Search (BM25)**: Retrieves questions based on similarity of the keywords used in the question.
 
