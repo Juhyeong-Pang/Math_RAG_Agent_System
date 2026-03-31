@@ -14,7 +14,7 @@ def clean_latex_and_fractions(text):
     def frac_to_decimal(match):
         num = float(match.group(1))
         den = float(match.group(2))
-        return str(round(num / den, 3))
+        return str(round(num / den, 2))
 
     text = re.sub(r"\\frac\{(\d+)\}\{(\d+)\}", frac_to_decimal, text)
 

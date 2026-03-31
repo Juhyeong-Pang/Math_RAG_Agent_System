@@ -73,7 +73,7 @@ class RAGAgent:
             raise ValueError("LLM Response is empty")
 
         result = self._safe_json_load(raw_content)
-        return re.sub(r"[\\]", "", result)
+        return result
 
     def _safe_json_load(self, raw_content: str) -> dict:
         try:

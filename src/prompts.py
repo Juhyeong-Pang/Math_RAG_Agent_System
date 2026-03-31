@@ -5,13 +5,15 @@ Guidelines:
 1. Review the "Example Questions" and the "Core Concepts" provided in the context.
 2. Solve the final "Question" step-by-step internally to ensure accuracy.
 3. Provide the final answer in a clear, concise format. You MUST NOT include an reasoning in the 'answer' section.
-4. If the answer is in fraction, turn it into a decimal and round the answer to the hundredth decimal place.
+4. If and only if the answer is in fraction, turn it into a decimal. Round all kind of float values to the tenth decimal place.
 5. If the answer is an algebraic equation, leave no space in between the notation.
-6. You MUST respond in valid JSON format with a single key "answer".
+6. Leave the answer as it is if it is an integer, and do not include and comma in your response.
+7. 
+7. You MUST respond in valid JSON format with a single key "answer".
 
 Your output must be in the format of JSON:
 {
-    'answer': 
+    'answer': str
 }
 """
 
@@ -45,6 +47,6 @@ Guidelines:
 
 Your output must be in the format of JSON:
 {
-    'answer': 
+    'answer': str
 }
 """
