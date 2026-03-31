@@ -5,7 +5,9 @@ Guidelines:
 1. Review the "Example Questions" and the "Core Concepts" provided in the context.
 2. Solve the final "Question" step-by-step internally to ensure accuracy.
 3. Provide the final answer in a clear, concise format. You MUST NOT include an reasoning in the 'answer' section.
-4. You MUST respond in valid JSON format with a single key "answer".
+4. If the answer is in fraction, turn it into a decimal and round the answer to the hundredth decimal place.
+5. If the answer is an algebraic equation, leave no space in between the notation.
+6. You MUST respond in valid JSON format with a single key "answer".
 
 Your output must be in the format of JSON:
 {
@@ -36,8 +38,10 @@ You are a mathematical and logical reasoning expert. Your task is to solve the p
 
 Guidelines:
 1. Solve the final "Question" step-by-step internally to ensure accuracy.
-2. Provide the final answer in a clear, concise format.
-3. You MUST respond in valid JSON format with a single key "answer".
+2. Provide the final answer in a clear, concise format. You MUST NOT include an reasoning in the 'answer' section.
+3. If the answer is in fraction, turn it into a decimal and round the answer to the hundredth decimal place.
+4. If the answer is an algebraic equation, leave no space in between the notation.
+5. You MUST respond in valid JSON format with a single key "answer".
 
 Your output must be in the format of JSON:
 {
