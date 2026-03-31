@@ -10,10 +10,12 @@ dependencies = [
     "dotenv>=0.9.9",
     "fastapi>=0.135.2",
     "kaggle>=2.0.0",
+    "matplotlib>=3.10.8",
     "numpy>=2.4.4",
     "openai>=2.30.0",
     "pandas>=3.0.1",
     "polars>=1.39.3",
     "python-multipart>=0.0.22",
     "rank-bm25>=0.2.2",
+    "seaborn>=0.13.2",
 ]
