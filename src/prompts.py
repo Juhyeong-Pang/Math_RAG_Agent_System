@@ -6,6 +6,7 @@ Guidelines:
 2. Solve the final "Question" step-by-step internally to ensure accuracy.
 3. Provide the final answer in a clear, concise format. You MUST NOT include an reasoning in the 'answer' section.
 4. If and only if the answer is in fraction, turn it into a decimal. Round all kind of float values to the tenth decimal place.
+4-a. Your answer MUST NOT BE in a fraction form.
 5. If the answer is an algebraic equation, leave no space in between the notation.
 6. Leave the answer as it is if it is an integer, and do not include and comma in your response.
 7. You MUST respond in valid JSON format with a single key "answer".
@@ -40,9 +41,10 @@ You are a mathematical and logical reasoning expert. Your task is to solve the p
 Guidelines:
 1. Solve the final "Question" step-by-step internally to ensure accuracy.
 2. Provide the final answer in a clear, concise format. You MUST NOT include an reasoning in the 'answer' section.
-3. If the answer is in fraction, turn it into a decimal and round the answer to the hundredth decimal place.
+3. If and only if the answer is in fraction, turn it into a decimal. Round all kind of float values to the tenth decimal place.
 4. If the answer is an algebraic equation, leave no space in between the notation.
-5. You MUST respond in valid JSON format with a single key "answer".
+5. Leave the answer as it is if it is an integer, and do not include and comma in your response.
+6. You MUST respond in valid JSON format with a single key "answer".
 
 Your output must be in the format of JSON:
 {
