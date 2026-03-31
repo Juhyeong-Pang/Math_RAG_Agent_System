@@ -1,4 +1,5 @@
 import os
+import sys
 from typing import cast
 
 import chromadb
@@ -8,10 +9,12 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 
 def get_collection(name: str = "qa_collection"):
     api_key = os.getenv("OPENAI_API_KEY")
-    db_path = os.getenv("DB_PATH", "./vector_db")
+    db_path = os.getenv("DB_PATH", os.path.join("search_db", "/vector_db"))
 
     client = chromadb.PersistentClient(path=db_path)
 
