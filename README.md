@@ -28,8 +28,6 @@ RAG_Math
  ┃ ┗ run_ingestion.py
  ┣ src
  ┃ ┣ utils
- ┃ ┃ ┣ __pycache__
- ┃ ┃ ┃ ┗ bm25_utils.cpython-312.pyc
  ┃ ┃ ┣ bm25_utils.py
  ┃ ┃ ┗ solve_question.py
  ┃ ┣ agent.py
